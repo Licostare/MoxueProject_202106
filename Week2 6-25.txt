@@ -1,0 +1,13 @@
+724. 寻找数组的中心下标
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int sum = Array.stream(nums).sum();
+        int lefthalf = 0;
+        for(int i = 0; i <num.length; i++){
+            if(lefthalf * 2 == sum - nums[i])
+                return i;
+        }
+        lefthalf = lefthalf + nums[i]
+    }
+    return -1;
+}
