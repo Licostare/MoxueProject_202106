@@ -1,0 +1,45 @@
+118-杨辉三角
+思路
+List<List<Integer>> res=new ArrayList<>();
+第一行
+        List<Integer> list1=new ArrayList<>();
+        list1.add(1);
+        res.add(list1);
+第二行开始
+        for(int i=1;i<numRows;i++){
+            List<Integer> list2=new ArrayList<>();
+            list2.add(1);
+            List<Integer> temp=res.get(i-1);
+            for(int j=1;j<i;j++){
+                list2.add(temp.get(j-1)+temp.get(j));
+            }
+            list2.add(1);
+            res.add(list2);
+        }
+        return res;
+    }
+}
+
+看到一个取巧的思路
+for(int j = 0; j <= i; j++){
+                if(j == 0 || i == j){
+                    arr[i][j] = 1;
+                }else{
+                    arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
+                }
+                list.add(arr[i][j]);
+
+151-翻转字符串单词
+思路
+先用trim()删除空格
+将双指针i,j设置在最后一格
+while循环中
+i在不为空格的情况下开始递减
+碰到第一个空格时将i,j件的字符存入字符串
+i跳过空格
+j=i将j挪到下一个单词的最后一格字符
+结束循环
+返回完整字符串
+
+153-旋转排序数组最小值
+二分法 没想到什么思路。。
