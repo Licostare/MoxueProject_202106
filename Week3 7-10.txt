@@ -1,0 +1,134 @@
+13.罗马数字转整数
+class Solution {
+    public int romanToInt(String s) {
+        int sum = 0;
+        int num = getValue(s.charAt(0));
+        for(int i = 1; i < s.length(); i++){
+            int nextNum = getValue(s.charAt(i));
+            if(num < nextNum){
+                sum = sum - num;
+            } else{
+                sum = sum + num;
+            }
+            num = nextNum;
+        }
+        sum = sum + num;
+        return sum;
+    }
+
+    private int getValue(char c){
+        switch(c){
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return 0;
+        }
+    }
+}
+
+6.Z字形变换
+
+707.设计链表
+class MyLinkedList {
+    int size;
+    ListNode head;
+
+    public MyLinkedList() {
+        size = 0;
+        head = new ListNode(0);
+    }
+   
+    public int get(int index) {
+        if(index < 0 || index >= size){
+            return -1;
+        }
+        ListNode currentNode = head;
+        for (int i = 0; i <= index; i++){
+            currentNode = currentNode.next;
+        }
+        return currentNode.val; 
+    }
+    
+    public void addAtHead(int val) {
+        addAtIndex(0, val);
+    }
+    
+    public void addAtTail(int val) {
+        addAtIndex(size, val);
+    }
+
+    public void addAtIndex(int index, int val) {
+        if(index > size){
+            return;
+        }
+        if(index < 0){
+            index = 0;
+        }
+        size = size + 1;
+        ListNode prev = head;
+        for(int i = 0; i < index; i++){
+            prev = prev.next;
+        }
+        ListNode toAdd = new ListNode(val);
+        toAdd.next = prev.next;
+        prev.next = toAdd;
+    }
+    
+    public void deleteAtIndex(int index) {
+        if(index >= size || index < 0){
+            return;
+        }
+        size = size -1;
+        ListNode prev = head;
+        for(int i = 0; i < index; i++){
+            prev = prev.next;
+        }
+        prev.next = prev.next.next;
+    }
+}
+
+class ListNode{
+        int val;
+        ListNode next;
+        ListNode (){
+
+        }
+        ListNode(int val){
+            this.val = val;
+        }
+    }
+
+19.删除链表第N个结点
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dumb = new ListNode(-1);
+        dumb.next = head;
+        ListNode fast = dumb;
+        ListNode slow = dumb;
+        for(int i = 0; i < n; i++){
+            fast = fast.next;
+        }
+        ListNode prev = null;
+        while(fast != null){
+            prev = slow;
+            fast = fast.next;
+            slow = slow.next;
+        }
+        prev.next = slow.next;
+        return dumb.next;
+    }
+}
+
+138.复制随机指针链表
