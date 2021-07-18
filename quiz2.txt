@@ -1,0 +1,53 @@
+1. 从尾到头打印链表
+class Solution {
+    public int[] reversePrint(ListNode head) {
+        int length = 0;
+        ListNode cur = head;
+        while(cur != null){
+            cur = cur.next;
+            length++;
+        }
+        
+        int[] res = new int[length];
+        for(int i = length-1; i>= 0 ;i--){
+            res[i] = cur.val;
+            cur = cur.next;
+        }
+        return res;
+    }
+}
+
+2. 反转字符串中的元音字母
+class Solution {
+    public String reverseVowels(String s) {
+        char[] ch = s.toCharArray();
+        int n = ch.length;
+        int fast = 0;
+        int slow = n-1;
+        while(fast < slow){
+            while(fast < slow && !isVowel(ch[fast])){
+                fast++;
+            }
+            while(slow >=0 && !isVowel(ch[slow])){
+                slow--;
+            }
+            change(ch, fast, slow);
+            fast++;
+            slow--;
+        }
+        return new String(ch);
+    }
+
+    private void change(char[] ch, int x, int y){
+            char z = ch[x];
+            ch[x] = ch[y];
+            ch[y] = z;
+    }
+
+    private boolean isVowel(char ch){
+         if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u'){
+             return true;
+         }
+         return false;
+    }
+}
